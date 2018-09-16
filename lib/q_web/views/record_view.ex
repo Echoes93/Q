@@ -10,7 +10,7 @@ defmodule QWeb.RecordView do
     %{data: render_one(record, RecordView, "record.json", as: :record)}
   end
 
-  def render("record.json", %{record: record}) do
-    %{key: record.key, value: record.value}
+  def render("record.json", %{record: {key, value}}) do
+    %{"key" => key, "value" => value}
   end
 end

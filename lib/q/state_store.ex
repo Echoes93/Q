@@ -7,6 +7,7 @@ defmodule Q.StateStore do
   def get, do: GenServer.call(__MODULE__, :get)
   def get(key), do: GenServer.call(__MODULE__, {:get, key})
   def put(key, value), do: GenServer.cast(__MODULE__, {:put, key, value})
+  def delete(key), do: GenServer.cast(__MODULE__, {:delete, key})
 
 
   # CALLBACKS
@@ -19,20 +20,26 @@ defmodule Q.StateStore do
   end
 
   def handle_call({:get, key}, _from, state) do
-    return_value = Map.get(state, key)
+    return_value = Q.Collection.get(state, key)
     {:reply, return_value, state}
   end
 
   def handle_cast({:put, key, value}, state) do
-    new_state = Map.put(state, key, value)
-    throw_event(%{key: key, value: value})
+    new_state = Q.Collection.put(state, key, value)
+    throw_event({key, value}, :new_value)
+    {:noreply, new_state}
+  end
+
+  def handle_cast({:delete, key}, state) do
+    new_state = Q.Collection.delete(state, key)
+    throw_event(key, :record_deleted)
     {:noreply, new_state}
   end
 
 
   # HELPERS
-  defp throw_event(payload) do
-    params = %{topic: :new_value}
+  defp throw_event(payload, topic) do
+    params = %{topic: topic}
     EventSource.notify(params) do
       payload
     end

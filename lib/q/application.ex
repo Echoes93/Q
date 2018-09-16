@@ -5,7 +5,8 @@ defmodule Q.Application do
     import Supervisor.Spec
 
     EventBus.register_topic(:new_value)
-    EventBus.subscribe({QWeb.RecordsChannel, [:new_value]})
+    EventBus.register_topic(:record_deleted)
+    EventBus.subscribe({QWeb.RecordsChannel, [:new_value, :record_deleted]})
 
     children = [
       supervisor(QWeb.Endpoint, []),
