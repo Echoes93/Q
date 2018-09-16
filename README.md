@@ -1,18 +1,14 @@
-# Q
+## Work in Progress
 
-To start your Phoenix server:
+- ~~Functioning application with state store based on map~~
+- ~~Custom collection implementation and store based on it~~
+- ~~Ability to update/remove records from store and corresponding channel events~~
+- Deploy on Heroku
+- Readme
+- Implement `Collectable` and `Enumerable` for `Q.Collection` 
+- Better test coverage
+- Refactoring?
 
-  * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server`
+## What is this ***?
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+This is a server application for [Qlient](https://github.com/Echoes93/Qlient), based on `Elixir/Phoenix` + `EventBus`.
