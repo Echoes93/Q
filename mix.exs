@@ -36,6 +36,7 @@ defmodule Q.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
+      {:event_bus, "~> 1.4"},
 
       #DEV DEPENDENCIES
       {:mix_test_watch, "~> 0.8", only: :dev, runtime: false}

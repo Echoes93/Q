@@ -2,7 +2,8 @@ defmodule Q.StateStoreTest do
   use ExUnit.Case, async: true
 
   setup_all do
-    start_supervised!(Q.StateStore)
+    # start_supervised!(Q.StateStore)
+
     :ok
   end
 

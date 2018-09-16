@@ -1,5 +1,6 @@
 defmodule Q.StateStore do
   use GenServer
+  use EventBus.EventSource
 
   def start_link(_), do: GenServer.start_link(__MODULE__, [], [name: __MODULE__])
 
@@ -24,6 +25,16 @@ defmodule Q.StateStore do
 
   def handle_cast({:put, key, value}, state) do
     new_state = Map.put(state, key, value)
+    throw_event(%{key: key, value: value})
     {:noreply, new_state}
+  end
+
+
+  # HELPERS
+  defp throw_event(payload) do
+    params = %{topic: :new_value}
+    EventSource.notify(params) do
+      payload
+    end
   end
 end
