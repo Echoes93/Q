@@ -6,6 +6,7 @@ defmodule QWeb.UserSocket do
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket,
+    check_origin: false,
     timeout: 45_000
 
   ## Connection Callback
