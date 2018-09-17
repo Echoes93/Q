@@ -5,7 +5,8 @@ defmodule QWeb.UserSocket do
   channel "records", QWeb.RecordsChannel
 
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
+  transport :websocket, Phoenix.Transports.WebSocket,
+    timeout: 45_000
 
   ## Connection Callback
   def connect(_params, socket) do
